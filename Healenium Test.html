@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)https://elenastepuro.github.io/test_env/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Healenium Test</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="https://elenastepuro.github.io/test_env/images/icons/favicon.ico">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./Healenium Test_files/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./Healenium Test_files/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./Healenium Test_files/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./Healenium Test_files/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./Healenium Test_files/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./Healenium Test_files/util.css">
+    <link rel="stylesheet" type="text/css" href="./Healenium Test_files/main.css">
+    <!--===============================================================================================-->
+</head>
+<body cz-shortcut-listen="true">
+
+<div class="healenium test fields">
+    <div class="container-healenium">
+
+            <span class="healenium-form-title">Healenium Test Fields</span>
+            <span class="healenium-form-subtitle">All fields locators will be changed after click on button</span>
+
+        <div class="healenium-form validate-form" id="main_form">
+            <div class="container-healenium-form-btn">
+                <button class="healenium-form-btn" id="submit_alert" name="random_alert" onclick="hlmWait()">
+						<span>
+							Generate alert
+							<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+						</span>
+                </button>
+            </div>
+
+            <div class="wrap-input1 validate-input" data-validate="Name is required">
+                <input class="input1 hlm_hover" type="text" name="Field1" id="change_id" placeholder="Change: Id and TagName">
+                <span class="shadow-input1"></span>
+                <child_tag class="shadow-input1" id="change_element_last_child">
+            </child_tag></div>
+
+            <div class="wrap-input1 validate-input">
+                <input class="test_class" type="text" name="Field2" id="change_className" placeholder="Change: ClassName">
+                <span class="shadow-input1"></span>
+            </div>
+
+            <div class="wrap-input1 validate-input" id="descendant_change">
+                <test_tag class="shadow-input1" id="change_element"></test_tag>
+                <input class="input1" type="text" id="change_below_element" placeholder="Change: TagName">
+            </div>
+
+            <div class="wrap-input1 validate-input">
+                <textarea class="input1" type="text" id="change_enabled" placeholder="Change: Enabled to disabled"></textarea>
+                <span class="shadow-input1"></span>
+            </div>
+
+<!--            checkbox disabled-->
+            <div class="wrap-input1 validate-input">
+                <input class="input1" type="checkbox" id="change_disabled" placeholder="Change: Disabled to enabled" disabled="">
+                <span class="shadow-input1"></span>
+            </div>
+
+            <div class="wrap-input1 validate-input">
+                <input class="input1" type="checkbox" id="change_checked" placeholder="Change: Checked to unchecked" checked="">
+                <span class="shadow-input1"></span>
+            </div>
+
+            <div class="wrap-input1 validate-input">
+                <input class="input1" type="text" id="change:name" placeholder="Change: Name" name="change_name">
+                <span class="shadow-input1"></span>
+            </div>
+
+            <div class="wrap-input1 validate-input">
+                <a class="input1" id="change_links" href="https://healenium.io/">Change: LinkText, PartialLinkText</a>
+            </div>
+
+            <div class="container-healenium-form-btn">
+                <button class="healenium-form-btn" id="Submit" name="change_fields" onclick="showValidate()">
+						<span>
+							Change locators
+							<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+						</span>
+                </button>
+            </div>
+        <div class="wrap-input1 validate-input"><input class="input1" id="change_wait"></div></div>
+		<div class="test-form healenium-form validate-form">
+			<div class="wrap-input1 validate-input">
+                <input class="input1" type="checkbox" id="form_checked1" placeholder="Change: Checked to unchecked" checked="">
+                <span class="shadow-input1"></span>
+            </div>
+			<div class="wrap-input1 validate-input">
+                <input class="input1" type="checkbox" id="form_checked2" placeholder="Change: Checked to unchecked" checked="">
+                <span class="shadow-input1"></span>
+            </div>
+			<div class="wrap-input1 validate-input">
+                <input class="input1" type="checkbox" id="form_checked3" placeholder="Change: Checked to unchecked" checked="">
+                <span class="shadow-input1"></span>
+            </div>
+			
+			<div class="container-healenium-form-btn">
+                <button class="healenium-form-btn" id="Submit_checkbox" name="change_fields" onclick="forParentSubmit()">
+						<span>
+							Change locators
+							<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+						</span>
+                </button>
+            </div>
+            <div class="container-healenium-form-btn">
+                <button class="healenium-form-btn" style="margin-top: 20px" id="Wait_Submit" name="create_fields" onclick="waitSubmit()">
+						<span>
+							Create wait locator
+							<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+						</span>
+                </button>
+            </div>
+		</div>
+    </div>
+</div>
+
+
+<!--===============================================================================================-->
+<script type="text/javascript" async="" src="./Healenium Test_files/analytics.js.descarga"></script><script src="./Healenium Test_files/jquery-3.2.1.min.js.descarga"></script>
+<!--===============================================================================================-->
+<script src="./Healenium Test_files/popper.js.descarga"></script>
+<script src="./Healenium Test_files/bootstrap.min.js.descarga"></script>
+<!--===============================================================================================-->
+<script src="./Healenium Test_files/select2.min.js.descarga"></script>
+<!--===============================================================================================-->
+<script src="./Healenium Test_files/tilt.jquery.min.js.descarga"></script>
+<script>
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="./Healenium Test_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+
+</script>
+
+<!--===============================================================================================-->
+<script src="./Healenium Test_files/main.js.descarga"></script>
+
+
+
+</body></html>
