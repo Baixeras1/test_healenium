@@ -66,7 +66,7 @@ add.onclick = function () {
   // Create a custom square element
   square = document.createElement("custom-square");
   square.setAttribute("size", "100");
-  square.setAttribute("color", "blue");
+  square.setAttribute("color", "green");
   document.body.appendChild(square);
 
   update.disabled = false;
