@@ -1,132 +1,93 @@
-//CSS Hover
-//XPath Hover
-//    <a:hover>
-var test = document.getElementById("change_id");
-    test.addEventListener("mouseenter", function( event ) {
-      // highlight the mouseenter target
-      event.target.name="hover";
+// Create a class for the element
+class Square extends HTMLElement {
+  // Specify observed attributes so that
+  // attributeChangedCallback will work
+  static get observedAttributes() {
+    return ["color", "size"];
+  }
 
-      setTimeout(function() {
-          event.target.name="hover";
-        }, 3000);
-      },true);
+  constructor() {
+    // Always call super first in constructor
+    super();
 
-window.addEventListener("load", function(event){
-    var main=document.getElementById("main_form")
-    setTimeout(function(){
-        var div = document.createElement('div');
-        div.className="wrap-input1 validate-input";
+    const shadow = this.attachShadow({ mode: "open" });
 
-        main.appendChild(div)
-        var field=document.createElement("input");
-        field.className="input1";
-        field.id="change_wait";
+    const div = document.createElement("div");
+    const style = document.createElement("style");
+    shadow.appendChild(style);
+    shadow.appendChild(div);
+  }
 
-        div.appendChild(field);
-    }, 8000);
-},true);
+  connectedCallback() {
+    console.log("Custom square element added to page.");
+    updateStyle(this);
+  }
 
-function showValidate() {
-//CSS Id - change_id -> newValue
-//Find element by Id
-    var idField=document.getElementById("change_id");
-    idField.id="newValue";
-    idField.name="return name";
+  disconnectedCallback() {
+    console.log("Custom square element removed from page.");
+  }
 
-//CSS ClassName - test_class -> newClass
-//Find element by classname
-//XPath Not Contains className 'input1'
-//XPath Contains className 'test'
-//XPath Following-Sibling
-//XPath Starts-with 'test'
-//XPath Ancestor::
-    var classNameField=document.getElementById("change_className");
-    classNameField.className="newClass";
+  adoptedCallback() {
+    console.log("Custom square element moved to new page.");
+  }
 
-//CSS Element - test_tag -> input
-//Find element by tagName
-//CSS FirstChild
-    var elemField=document.getElementById("change_element");
-    elemField.outerHTML = elemField.outerHTML.replace(/test_tag/g,"input");
+  attributeChangedCallback(name, oldValue, newValue) {
+    console.log("Custom square element attributes changed.");
+    updateStyle(this);
+  }
+}
 
-//CSS LastChild
-    var lastField=document.getElementById("change_element_last_child");
-    lastField.outerHTML = lastField.outerHTML.replace(/child_tag/g,"input");
+customElements.define("custom-square", Square);
 
-//CSS Disabled - Healing locators _4
-//    <input:disabled>
-    var disField=document.getElementById("change_disabled");
-    disField.disabled=false;
+function updateStyle(elem) {
+  const shadow = elem.shadowRoot;
+  shadow.querySelector("style").textContent = `
+    div {
+      width: ${elem.getAttribute("size")}px;
+      height: ${elem.getAttribute("size")}px;
+      background-color: ${elem.getAttribute("color")};
+    }
+  `;
+}
 
-//CSS Enabled - Healing locators _5
-//    <input:enabled>
-    var enField=document.getElementById("change_enabled");
-    enField.disabled=true;
+const add = document.querySelector(".add");
+const update = document.querySelector(".update");
+const remove = document.querySelector(".remove");
+let square;
 
-//CSS Checked - Healing locators _6
-//    <input:checked>
-    var chField=document.getElementById("change_checked");
-    chField.checked=false;
+update.disabled = true;
+remove.disabled = true;
 
-//<!--===============================================================================================-->
-//    Semantic
+function random(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
-//Find element by xpath - Healing locators _2
-//    <xpath>
+add.onclick = function () {
+  // Create a custom square element
+  square = document.createElement("custom-square");
+  square.setAttribute("size", "100");
+  square.setAttribute("color", "red");
+  document.body.appendChild(square);
 
-//Find element by linktext
-//Find element by partialLinkText
-    var linksField=document.getElementById("change_links");
-    linksField.href="https://github.com/healenium";
-    linksField.text="New text here";
+  update.disabled = false;
+  remove.disabled = false;
+  add.disabled = true;
+};
 
-//Find element by name - Healing locators _5
-//XPath with special characters
-    var nameField=document.getElementById("change:name");
-    nameField.name="newName";
-    nameField.id="newName";
+update.onclick = function () {
+  // Randomly update square's attributes
+  square.setAttribute("size", random(50, 200));
+  square.setAttribute(
+    "color",
+    `rgb(${random(0, 255)}, ${random(0, 255)}, ${random(0, 255)})`
+  );
+};
 
-//XPath Following - Healing Locators _2
-//XPath OR - Healing Locators _6
-//XPath And - Healing Locators _7
-//XPath Precending::
-//XPath Descendant::
-    var decField=document.getElementById("descendant_change");
-    decField.id="newDescendant";
+remove.onclick = function () {
+  // Remove the square
+  document.body.removeChild(square);
 
-    var waitElement=document.getElementById("change_wait");
-    waitElement.id="newWaitId";
- }
-
- //<!--===============================================================================================-->
- //Conditional wait for alert
-function hlmWait(){
-    setTimeout(function() {
-        var value=Math.floor(Math.random() * 100);
-        alert(value);
-    }, 10000);
- }
- 
- function forParentSubmit() {
-	var ch1=document.getElementById("form_checked1");
-    ch1.className="unchecked1";
-	
-	var ch2=document.getElementById("form_checked2");
-    ch2.className="unchecked2";
-	
-	var ch3=document.getElementById("form_checked3");
-    ch3.className="unchecked3";
- }
-
- function waitSubmit() {
-     setTimeout(function () {
-         // Здесь мы делаем определенный элемент видимым через его id
-         var newElement = document.createElement("input");
-         newElement.placeholder = "Wait input";
-         newElement.className = "input1"
-         newElement.id = "wait_new_element";
-         var submit = document.getElementById("Wait_Submit");
-         submit.parentNode.appendChild(newElement);
-         initialised = true;
-     }, 8000); // 8 seconds
- }
+  update.disabled = true;
+  remove.disabled = true;
+  add.disabled = false;
+};
